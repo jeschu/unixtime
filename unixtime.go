@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"math"
 	"os"
 	"regexp"
@@ -14,10 +13,7 @@ const formatLocal = "2006-01-02T15:04:05.000000000Z07:00"
 const formatUtc = "2006-01-02T15:04:05.000000000Z"
 
 func main() {
-	reg, err := regexp.Compile(`[^0-9\.]+`)
-	if err != nil {
-		log.Fatal(err)
-	}
+	reg := regexp.MustCompile(`[^0-9\.]+`)
 
 	for _, arg := range os.Args[1:] {
 		v := reg.ReplaceAllString(arg, "")
